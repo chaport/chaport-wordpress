@@ -1,0 +1,25 @@
+
+div.chaport-status-box {
+    background: #ffffff;
+    border-left: 4px solid #ffffff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    padding: 10px 20px;
+    margin-right: 10px;
+    max-width: 770px;
+}
+
+div.chaport-status-box span {
+    margin-left: 5px;
+}
+
+div.chaport-status-ok {
+    border-left-color: #46b450;
+}
+
+div.chaport-status-error {
+    border-left-color: #dc3232;
+}
+
+div.chaport-status-warning {
+    border-left-color: #f1da08;
+}

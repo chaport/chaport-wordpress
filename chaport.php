@@ -10,9 +10,12 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+require_once(__DIR__ . '/includes/chaport_app_id.php');
+require_once(__DIR__ . '/includes/chaport_installation_code_renderer.php');
+
 return ChaportPlugin::bootstrap();
 
-class ChaportPlugin {
+final class ChaportPlugin {
 
     private static $instance; // singleton
     public static function bootstrap() {
@@ -23,18 +26,24 @@ class ChaportPlugin {
     }
 
     private function __construct() { // constructable via ChaportPlugin::bootstrap()
-
-        add_action('admin_menu', array($this, 'plugin_admin_menu'));
-        add_action('admin_init', array($this, 'plugin_admin_init'));
-        add_action('wp_head', array($this, 'embed_chaport'));
-
+        add_action('admin_enqueue_scripts', array($this, 'handle_admin_enqueue_scripts') );
+        add_action('admin_menu', array($this, 'handle_admin_menu'));
+        add_action('admin_init', array($this, 'handle_admin_init'));
+        add_action('wp_head', array($this, 'render_chaport_code'));
     }
 
-    public function plugin_admin_menu() {
+    public function handle_admin_enqueue_scripts($hook) {
+        // Include styles _only_ on Chaport Settings page
+        if ($hook === 'settings_page_chaport-settings') {
+            wp_enqueue_style('chaport', plugin_dir_url(__FILE__) . 'assets/style.css');
+        }
+    }
+
+    public function handle_admin_menu() {
 
         add_options_page(
-            'Chaport Settings', // $page_title
-            'Chaport', // $menu_title
+            __('Chaport Settings', 'chaport'), // $page_title
+            __('Chaport', 'chaport'), // $menu_title
             'manage_options', // $capability
             'chaport-settings', // $menu_slug
             array($this, 'render_settings_page') // $function (callback)
@@ -42,58 +51,114 @@ class ChaportPlugin {
             
     }
 
-    public function plugin_admin_init() {
+    public function handle_admin_init() {
+
+        register_setting('chaport-settings', 'chaport-app-id', array(
+            'type' => 'string',
+            'description' => __('Chaport App ID', 'chaport'),
+        ));
 
         register_setting('chaport-settings', 'chaport-code', array(
             'type' => 'string',
-            'description' => 'Chaport embedded code',
-            'default' => NULL
+            'description' => __('Chaport installation code', 'chaport'),
         ));
-
+        
         add_settings_section(
-            'chaport-settings-section', // $id
-            'Chaport Settings', // $title
-            array($this, 'render_settings_section'), // $callback
+            'chaport-settings', // $id
+            __('Chaport Settings', 'chaport'), // $title
+            array($this, 'render_settings'), // $callback
             'chaport-settings' // $page
         );
 
         add_settings_field(
-            'chaport-code-field', // $id
-            'Chaport code', // $title
-            array($this, 'render_code_field'), // $callback
+            'chaport-app-id', // $id
+            __('Chaport App ID', 'chaport'), // $title
+            array($this, 'render_app_id_field'), // $callback
             'chaport-settings', // $page
-            'chaport-settings-section' //$section
+            'chaport-settings' //$section
         );
 
+        add_settings_field(
+            'chaport-code', // $id
+            __('Custom Installation Code', 'chaport'), // $title
+            array($this, 'render_installation_code_field'), // $callback
+            'chaport-settings', // $page
+            'chaport-settings' //$section
+        );
+        
     }
 
-    public function render_settings_section() {
-        echo '<p>Please paste you Chaport code here</p>';
+    public function render_settings() {
+
+        $statusMessage = __('Not configured', 'chaport'); // Default status message
+        $statusClass = 'chaport-status-warning'; // Default status class
+
+        $appId = get_option('chaport-app-id');
+        $code = get_option('chaport-code');
+
+        if (!empty($code)) {
+            $statusMessage = __('Configured. Using custom installation code.', 'chaport');
+            $statusClass = 'chaport-status-ok';
+        } else if(!empty($appId)) {
+            if (ChaportAppId::isValid($appId)) {
+                $statusMessage = __('Configured. Using Chaport App ID.', 'chaport');
+                $statusClass = 'chaport-status-ok';
+            } else {
+                $statusMessage = __('Error. Invalid Chaport App ID.', 'chaport');
+                $statusClass = 'chaport-status-error';
+            }
+        }
+
+        require(__DIR__ . '/includes/chaport_status_snippet.php');
+
     }
 
-    public function render_code_field() {
-        echo "<textarea cols=\"80\" rows=\"14\" name=\"chaport-code\">" . esc_attr(get_option('chaport-code')) . "</textarea>";
+    public function render_app_id_field() {
+        echo "<input id='chaport-app-id' name='chaport-app-id' size='40' type='text' value='" . esc_attr(get_option('chaport-app-id')) . "' />";
+    }
+
+    public function render_installation_code_field() {
+        echo "<textarea id='chaport-code' name='chaport-code' cols='80' rows='14'>" . esc_attr(get_option('chaport-code')) . "</textarea>";
     }
 
     public function render_settings_page() {
-
-        echo "<form action=\"options.php\" method=\"POST\">";
+        echo "<form action='options.php' method='POST'>";
+        settings_fields('chaport-settings');
         do_settings_sections('chaport-settings');
         submit_button();
         echo "</form>";
-    
     }
 
-    public function embed_chaport() {
+    public function render_chaport_code() {
 
         if ( is_feed() || is_robots() || is_trackback() ) {
           return;
         }
 
+        $appId = get_option('chaport-app-id');
         $code = get_option('chaport-code');
 
-        if (isset($code) && trim($code) !== '') {
+        if ($code) {
+
+            // User provided custom installation code. Render it as is.
             echo $code;
+
+        } else if (!empty($appId) && ChaportAppId::isValid($appId)) {
+            
+            // Render standart installation code
+            $renderer = new ChaportInstallationCodeRenderer(ChaportAppId::fromString($appId));
+
+            // Try to get user email & name
+            $user = wp_get_current_user();
+            if (!empty($user->user_email)) {
+                $renderer->setUserEmail($user->user_email);
+            }
+            if (!empty($user->display_name)) {
+                $renderer->setUserName($user->display_name);
+            }
+    
+            $renderer->render();
+
         }
 
     }
