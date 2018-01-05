@@ -6,6 +6,8 @@
  * Description: Description here...
  * Author: Chaport
  * Author URI: https://www.chaport.com/
+ * Text Domain: chaport
+ * Domain Path: /languages
  */
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
@@ -26,10 +28,15 @@ final class ChaportPlugin {
     }
 
     private function __construct() { // constructable via ChaportPlugin::bootstrap()
+        add_action('plugins_loaded', array($this, 'load_textdomain'));
         add_action('admin_enqueue_scripts', array($this, 'handle_admin_enqueue_scripts') );
         add_action('admin_menu', array($this, 'handle_admin_menu'));
         add_action('admin_init', array($this, 'handle_admin_init'));
         add_action('wp_head', array($this, 'render_chaport_code'));
+    }
+
+    public function load_textdomain() {
+        load_plugin_textdomain('chaport', false, basename(dirname(__FILE__)) . '/languages/');
     }
 
     public function handle_admin_enqueue_scripts($hook) {
@@ -55,12 +62,12 @@ final class ChaportPlugin {
 
         register_setting('chaport-settings', 'chaport-app-id', array(
             'type' => 'string',
-            'description' => __('Chaport App ID', 'chaport'),
+            'description' => __('App ID', 'chaport'),
         ));
 
         register_setting('chaport-settings', 'chaport-code', array(
             'type' => 'string',
-            'description' => __('Chaport installation code', 'chaport'),
+            'description' => __('Custom Installation Code', 'chaport'),
         ));
         
         add_settings_section(
@@ -72,7 +79,7 @@ final class ChaportPlugin {
 
         add_settings_field(
             'chaport-app-id', // $id
-            __('Chaport App ID', 'chaport'), // $title
+            __('App ID', 'chaport'), // $title
             array($this, 'render_app_id_field'), // $callback
             'chaport-settings', // $page
             'chaport-settings' //$section
@@ -90,7 +97,7 @@ final class ChaportPlugin {
 
     public function render_settings() {
 
-        $statusMessage = __('Not configured', 'chaport'); // Default status message
+        $statusMessage = __('Not configured.', 'chaport'); // Default status message
         $statusClass = 'chaport-status-warning'; // Default status class
 
         $appId = get_option('chaport-app-id');
@@ -104,7 +111,7 @@ final class ChaportPlugin {
                 $statusMessage = __('Configured. Using Chaport App ID.', 'chaport');
                 $statusClass = 'chaport-status-ok';
             } else {
-                $statusMessage = __('Error. Invalid Chaport App ID.', 'chaport');
+                $statusMessage = __('Error. Invalid App ID.', 'chaport');
                 $statusClass = 'chaport-status-error';
             }
         }

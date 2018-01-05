@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru_RU\n"
+"X-Generator: Poedit 2.0.5\n"
+
+msgid "Chaport"
+msgstr "Чапорт"
+
+msgid "Description here..."
+msgstr "Описание тут..."
+
+msgid "Chaport Settings"
+msgstr "Настройки Чапорт"
+
+msgid "Status:"
+msgstr "Состояние:"
+
+msgid "Please paste a Chaport App ID which you can get under \"Chaport Settings\" -> <a target=\"_blank\" href=\"%s\">\"Installation code\"</a>"
+msgstr "Пожалуйста, вставьте ваш App ID, который Вы можете найти на странице “Настройки” -> <a target=“_blank” href=“%s”>“Код установки”</a>"
+
+msgid "Alternatively you can provide a custom Chaport installation code."
+msgstr "Либо Вы можете предоставить свой (пользовательский) код установки."
+
+msgid "Not configured."
+msgstr "Не настроено."
+
+msgid "Configured. Using custom installation code."
+msgstr "Настроено. Используется пользовательский код установки."
+
+msgid "Configured. Using Chaport App ID."
+msgstr "Настроено. Используется App ID."
+
+msgid "Error. Invalid App ID."
+msgstr "Ошибка. Неверный формат App ID."
+
+msgid "App ID"
+msgstr "App ID"
+
+msgid "Custom Installation Code"
+msgstr "Пользовательский код установки"
