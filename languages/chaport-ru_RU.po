@@ -11,20 +11,20 @@ msgstr ""
 "Language: ru_RU\n"
 "X-Generator: Poedit 2.0.5\n"
 
-msgid "Chaport"
-msgstr "Чапорт"
+msgid "Chaport Live Chat"
+msgstr "Chaport – чат для сайта"
 
-msgid "Description here..."
-msgstr "Описание тут..."
+msgid "Modern Live Chat plugin for your WordPress site. Powerful features: group chats, file sending, etc. Free for 5 agents. Unlimited chats & history."
+msgstr "Современный онлайн-чат для вашего WordPress-сайта. Широкие возможности: групповые чаты, отправка файлов и др. Бесплатно для 5 операторов. Неограниченные чаты и история."
 
 msgid "Chaport Settings"
-msgstr "Настройки Чапорт"
+msgstr "Настройки Chaport"
 
 msgid "Status:"
 msgstr "Состояние:"
 
 msgid "Please paste a Chaport App ID which you can get under \"Chaport Settings\" -> <a target=\"_blank\" href=\"%s\">\"Installation code\"</a>"
-msgstr "Пожалуйста, вставьте ваш App ID, который Вы можете найти на странице “Настройки” -> <a target=“_blank” href=“%s”>“Код установки”</a>"
+msgstr "Пожалуйста, вставьте ваш App ID, который Вы можете найти на странице \"Настройки\" -> <a target=\"_blank\" href=\"%s\">\"Код установки\"</a>"
 
 msgid "Alternatively you can provide a custom Chaport installation code."
 msgstr "Либо Вы можете предоставить свой (пользовательский) код установки."
@@ -40,9 +40,6 @@ msgstr "Настроено. Используется App ID."
 
 msgid "Error. Invalid App ID."
 msgstr "Ошибка. Неверный формат App ID."
-
-msgid "App ID"
-msgstr "App ID"
 
 msgid "Custom Installation Code"
 msgstr "Пользовательский код установки"
