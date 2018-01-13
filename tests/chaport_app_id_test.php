@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-require_once(__DIR__ . '/../includes/chaport_app_id.php');
+require_once(dirname(__FILE__) . '/../includes/chaport_app_id.php');
 
 final class ChaportAppIdTest extends TestCase {
 

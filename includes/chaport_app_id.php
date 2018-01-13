@@ -17,7 +17,7 @@ final class ChaportAppId {
     }
 
     /** Constructs new App ID instance from given string */
-    public static function fromString(string $maybeAppId) {
+    public static function fromString($maybeAppId) {
         if (!self::isValid($maybeAppId)) {
             throw new Exception('Invalid Chaport App ID');
         }
@@ -25,7 +25,7 @@ final class ChaportAppId {
     }
 
     /** Checks if string is a valid Chaport App ID */
-    public static function isValid(string $maybeAppId) {
+    public static function isValid($maybeAppId) {
         return !!preg_match('/^[a-f\d]{24}$/i', $maybeAppId);
     }
 

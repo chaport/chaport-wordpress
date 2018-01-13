@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/chaport_app_id.php');
+require_once(dirname(__FILE__) . '/chaport_app_id.php');
 
 /** Chaport installation code renderer */
 final class ChaportInstallationCodeRenderer {
@@ -16,23 +16,32 @@ final class ChaportInstallationCodeRenderer {
     /** @var string User name */
     private $userName;
 
-    public function __construct(ChaportAppId $appId) {
+    public function __construct($appId) {
+        if (!($appId instanceof ChaportAppId)) {
+            throw new Error('Expecting appId to be instance of ChaportAppId');
+        }
         $this->appId = $appId;
     }
 
     /** Set user email */
-    public function setUserEmail(string $email) {
+    public function setUserEmail($email) {
+        if (!is_string($email)) {
+            throw new Exception('Email should be a string');
+        }
         $this->userEmail = $email;
     }
 
     /** Set user name */
-    public function setUserName(string $name) {
+    public function setUserName($name) {
+        if (!is_string($name)) {
+            throw new Exception('Name should be a string');
+        }
         $this->userName = $name;
     }
 
     /** Render code snippet (echo) */
     public function render() {
-        require(__DIR__ . '/chaport_installation_code_snippet.php');
+        require(dirname(__FILE__) . '/chaport_installation_code_snippet.php');
     }
 
     /** Render code snippet to a string */

@@ -13,8 +13,8 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-require_once(__DIR__ . '/includes/chaport_app_id.php');
-require_once(__DIR__ . '/includes/chaport_installation_code_renderer.php');
+require_once(dirname(__FILE__) . '/includes/chaport_app_id.php');
+require_once(dirname(__FILE__) . '/includes/chaport_installation_code_renderer.php');
 
 return ChaportPlugin::bootstrap();
 
@@ -37,12 +37,12 @@ final class ChaportPlugin {
     }
 
     public function load_textdomain() {
-        load_plugin_textdomain('chaport', false, basename(dirname(__FILE__)) . '/languages/');
+        load_plugin_textdomain('chaport', false, basename(dirname(__FILE__)) . '/languages');
     }
 
     public function handle_admin_enqueue_scripts($hook) {
         // Include styles _only_ on Chaport Settings page
-        if ($hook === 'settings_page_chaport-settings') {
+        if ($hook === 'settings_page_chaport') {
             wp_enqueue_style('chaport', plugin_dir_url(__FILE__) . 'assets/style.css');
         }
     }
@@ -53,7 +53,7 @@ final class ChaportPlugin {
             __('Chaport Settings', 'chaport'), // $page_title
             __('Chaport', 'chaport'), // $menu_title
             'manage_options', // $capability
-            'chaport-settings', // $menu_slug
+            'chaport', // $menu_slug
             array($this, 'render_settings_page') // $function (callback)
         );
             
@@ -61,48 +61,47 @@ final class ChaportPlugin {
 
     public function handle_admin_init() {
 
-        register_setting('chaport-settings', 'chaport-app-id', array(
-            'type' => 'string',
-            'description' => __('App ID', 'chaport'),
-        ));
-
-        register_setting('chaport-settings', 'chaport-code', array(
-            'type' => 'string',
-            'description' => __('Custom Installation Code', 'chaport'),
-        ));
+        register_setting('chaport_options', 'chaport_options', array($this, 'sanitize_options'));
         
         add_settings_section(
-            'chaport-settings', // $id
+            'chaport_general_settings', // $id
             __('Chaport Settings', 'chaport'), // $title
-            array($this, 'render_settings'), // $callback
-            'chaport-settings' // $page
+            array($this, 'render_chaport_general_settings'), // $callback
+            'chaport' // $page
         );
 
         add_settings_field(
-            'chaport-app-id', // $id
+            'chaport_app_id_field', // $id
             __('App ID', 'chaport'), // $title
             array($this, 'render_app_id_field'), // $callback
-            'chaport-settings', // $page
-            'chaport-settings' //$section
+            'chaport', // $page
+            'chaport_general_settings' //$section
         );
 
         add_settings_field(
-            'chaport-code', // $id
+            'chaport_code_field', // $id
             __('Custom Installation Code', 'chaport'), // $title
             array($this, 'render_installation_code_field'), // $callback
-            'chaport-settings', // $page
-            'chaport-settings' //$section
+            'chaport', // $page
+            'chaport_general_settings' //$section
         );
         
     }
 
-    public function render_settings() {
+    public function sanitize_options($options) {
+        $sanitized['app_id'] = trim($options['app_id']);
+        $sanitized['code'] = trim($options['code']);
+        return $sanitized;
+    }
+
+    public function render_chaport_general_settings() {
 
         $statusMessage = __('Not configured.', 'chaport'); // Default status message
         $statusClass = 'chaport-status-warning'; // Default status class
 
-        $appId = get_option('chaport-app-id');
-        $code = get_option('chaport-code');
+        $options = get_option('chaport_options');
+        $appId = $options['app_id'];
+        $code = $options['code'];
 
         if (!empty($code)) {
             $statusMessage = __('Configured. Using custom installation code.', 'chaport');
@@ -117,24 +116,33 @@ final class ChaportPlugin {
             }
         }
 
-        require(__DIR__ . '/includes/chaport_status_snippet.php');
+        require(dirname(__FILE__) . '/includes/chaport_status_snippet.php');
 
     }
 
     public function render_app_id_field() {
-        echo "<input id='chaport-app-id' name='chaport-app-id' size='40' type='text' value='" . esc_attr(get_option('chaport-app-id')) . "' />";
+        $options = get_option('chaport_options');
+        echo "<input id='chaport_app_id_field' name='chaport_options[app_id]' size='40' type='text' value='" . esc_attr($options['app_id']) . "' />";
     }
 
     public function render_installation_code_field() {
-        echo "<textarea id='chaport-code' name='chaport-code' cols='80' rows='14'>" . esc_attr(get_option('chaport-code')) . "</textarea>";
+        $options = get_option('chaport_options');
+        echo "<textarea id='chaport_code_field' name='chaport_options[code]' cols='80' rows='14'>" . esc_attr($options['code']) . "</textarea>";
     }
 
     public function render_settings_page() {
+
+        if (!current_user_can('manage_options')) {
+            wp_die(__("You don't have access to this page"));
+        }
+
         echo "<form action='options.php' method='POST'>";
-        settings_fields('chaport-settings');
-        do_settings_sections('chaport-settings');
+        settings_fields('chaport_options');
+        do_settings_sections('chaport');
         submit_button();
+        // <input name="Submit" type="submit" value="Save Changes" />
         echo "</form>";
+
     }
 
     public function render_chaport_code() {
@@ -143,8 +151,9 @@ final class ChaportPlugin {
           return;
         }
 
-        $appId = get_option('chaport-app-id');
-        $code = get_option('chaport-code');
+        $options = get_option('chaport_options');
+        $appId = $options['app_id'];
+        $code = $options['code'];
 
         if ($code) {
 

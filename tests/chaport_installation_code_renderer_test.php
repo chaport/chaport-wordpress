@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-require_once(__DIR__ . '/../includes/chaport_app_id.php');
-require_once(__DIR__ . '/../includes/chaport_installation_code_renderer.php');
+require_once(dirname(__FILE__) . '/../includes/chaport_app_id.php');
+require_once(dirname(__FILE__) . '/../includes/chaport_installation_code_renderer.php');
 
 final class ChaportInstallationCodeRendererTest extends TestCase {
 
@@ -27,8 +27,8 @@ final class ChaportInstallationCodeRendererTest extends TestCase {
         $renderer->setUserEmail('john.doe@example.com');
         $renderer->setUserName('John Doe');
         $snippet = $renderer->renderToString();
-        $this->assertContains('w.chaport.email = \'john.doe@example.com\'', $snippet);
-        $this->assertContains('w.chaport.name = \'John Doe\'', $snippet);
+        $this->assertContains('w.chaport.visitor.email = \'john.doe@example.com\'', $snippet);
+        $this->assertContains('w.chaport.visitor.name = \'John Doe\'', $snippet);
     }
 
 }
