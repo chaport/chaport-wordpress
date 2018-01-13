@@ -136,12 +136,7 @@ final class ChaportPlugin {
             wp_die(__("You don't have access to this page"));
         }
 
-        echo "<form action='options.php' method='POST'>";
-        settings_fields('chaport_options');
-        do_settings_sections('chaport');
-        submit_button();
-        // <input name="Submit" type="submit" value="Save Changes" />
-        echo "</form>";
+        require(dirname(__FILE__) . '/includes/chaport_settings_snippet.php');
 
     }
 

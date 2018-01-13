@@ -43,3 +43,6 @@ msgstr "Ошибка. Неверный формат App ID."
 
 msgid "Custom Installation Code"
 msgstr "Пользовательский код установки"
+
+msgid "Save Changes"
+msgstr "Сохранить изменения"
