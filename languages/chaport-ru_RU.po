@@ -17,6 +17,9 @@ msgstr "Chaport – чат для сайта"
 msgid "Modern Live Chat plugin for your WordPress site. Powerful features: group chats, file sending, etc. Free for 5 agents. Unlimited chats & history."
 msgstr "Современный онлайн-чат для вашего WordPress-сайта. Широкие возможности: групповые чаты, отправка файлов и др. Бесплатно для 5 операторов. Неограниченные чаты и история."
 
+msgid "Chaport Live Chat Plugin supports Wordpress starting from version %s. Please upgrade."
+msgstr "Плагин Chaport Live Chat поддерживает все версии Wordpress, начиная с %s. Пожалуйста, обновите Вашу версию Wordpress."
+
 msgid "Chaport Settings"
 msgstr "Настройки Chaport"
 

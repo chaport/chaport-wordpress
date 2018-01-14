@@ -13,6 +13,10 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+// Minimum required version of Wordpress
+define('WP_MAJOR', 2);
+define('WP_MINOR', 8);
+
 require_once(dirname(__FILE__) . '/includes/chaport_app_id.php');
 require_once(dirname(__FILE__) . '/includes/chaport_installation_code_renderer.php');
 
@@ -34,6 +38,12 @@ final class ChaportPlugin {
         add_action('admin_menu', array($this, 'handle_admin_menu'));
         add_action('admin_init', array($this, 'handle_admin_init'));
         add_action('wp_head', array($this, 'render_chaport_code'));
+    }
+
+    private function wp_version_is_compatible() {
+        global $wp_version;
+        $version = array_map('intval', explode('.', $wp_version));
+        return $version[0] > WP_MAJOR || ($version[0] === WP_MAJOR && $version[1] >= WP_MINOR);
     }
 
     public function load_textdomain() {
@@ -127,7 +137,7 @@ final class ChaportPlugin {
 
     public function render_installation_code_field() {
         $options = get_option('chaport_options');
-        echo "<textarea id='chaport_code_field' name='chaport_options[code]' cols='80' rows='14'>" . esc_attr($options['code']) . "</textarea>";
+        echo "<textarea id='chaport_code_field' name='chaport_options[code]' cols='80' rows='14'>" . esc_html($options['code']) . "</textarea>";
     }
 
     public function render_settings_page() {
@@ -142,7 +152,7 @@ final class ChaportPlugin {
 
     public function render_chaport_code() {
 
-        if ( is_feed() || is_robots() || is_trackback() ) {
+        if ( !$this->wp_version_is_compatible() || is_feed() || is_robots() || is_trackback() ) {
           return;
         }
 
