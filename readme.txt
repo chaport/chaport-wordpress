@@ -12,6 +12,24 @@ Modern Live Chat plugin for your WordPress site. Powerful features: group chats,
 == Description ==
 Chaport is designed as a modern messenger to make your communication with customers as easy and enjoyable as chatting with friends. Install Chaport Live Chat on your WordPress site, answer customer questions and increase sales! Free for 5 operators with unlimited chats and history.
 
+Here are some of Chaport\'s key features:
+
+💎 Premium looking chat widget that works great on mobile
+🖥 Beautiful desktop apps for Mac & Windows
+📱 Full-featured mobile apps for iOS & Android
+👥 Group chats
+💬 Auto-invitations
+📧 Offline messages
+🌐 Multilingual chat widget
+✨ Saved replies
+📄 File sending
+😀 Emoji
+🔎 Typing insights
+🚫 Visitor ban
+📈 Reports
+🔗 API and Zapier integration
+💯 and much more...
+
 == Installation ==
 There are 2 ways to install Chaport Live Chat plugin:
 
