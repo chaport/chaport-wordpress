@@ -13,16 +13,16 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-// Minimum required version of Wordpress
-define('WP_MAJOR', 2);
-define('WP_MINOR', 8);
-
 require_once(dirname(__FILE__) . '/includes/chaport_app_id.php');
 require_once(dirname(__FILE__) . '/includes/chaport_installation_code_renderer.php');
 
 return ChaportPlugin::bootstrap();
 
 final class ChaportPlugin {
+
+    // Minimum required version of Wordpress for this plugin to work
+    const WP_MAJOR = 2;
+    const WP_MINOR = 8;
 
     private static $instance; // singleton
     public static function bootstrap() {
@@ -40,10 +40,10 @@ final class ChaportPlugin {
         add_action('wp_head', array($this, 'render_chaport_code'));
     }
 
-    private function wp_version_is_compatible() {
+    public function wp_version_is_compatible() {
         global $wp_version;
         $version = array_map('intval', explode('.', $wp_version));
-        return $version[0] > WP_MAJOR || ($version[0] === WP_MAJOR && $version[1] >= WP_MINOR);
+        return $version[0] > self::WP_MAJOR || ($version[0] === self::WP_MAJOR && $version[1] >= self::WP_MINOR);
     }
 
     public function load_textdomain() {
