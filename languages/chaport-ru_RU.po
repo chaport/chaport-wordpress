@@ -26,35 +26,17 @@ msgstr "Настройки Chaport"
 msgid "Status:"
 msgstr "Состояние:"
 
-msgid "Note:"
-msgstr "Примечание:"
-
-msgid "Please paste a Chaport App ID which you can get under \"Chaport Settings\" -> <a target=\"_blank\" href=\"%s\">\"Installation code\"</a>"
-msgstr "Пожалуйста, вставьте ваш App ID, который Вы можете найти на странице \"Настройки\" -> <a target=\"_blank\" href=\"%s\">\"Код установки\"</a>"
-
-msgid "Alternatively you can provide a custom Chaport installation code."
-msgstr "Либо Вы можете предоставить свой (пользовательский) код установки."
-
-msgid "Custom installation code should set <i>\"chaport.visitor\"</i> if you want to pass user email & name to Chaport."
-msgstr "Пользовательский код установки должен установить <i>\"chaport.visitor\"</i> (если необходима передача имени и email пользователя в Chaport)."
-
-msgid "See <i>\"Javascript API\"</i> on our <a target=\"_blank\" href=\"%s\">Documentation page</a>."
-msgstr "См. раздел <i>\"Javascript API\"</i> на нашей <a target=\"_blank\" href=\"%s\">Странице документации</a>."
+msgid "Please paste a Chaport App ID which you can get under <a target=\"_blank\" href=\"%s\">Settings -> Installation code</a> in Chaport app."
+msgstr "Пожалуйста, вставьте ваш App ID, который Вы можете найти на странице <a target=\"_blank\" href=\"%s\">Настройки -> Код установки</a> приложения Chaport."
 
 msgid "Not configured."
 msgstr "Не настроено."
 
-msgid "Configured. Using custom installation code."
-msgstr "Настроено. Используется пользовательский код установки."
-
-msgid "Configured. Using Chaport App ID."
-msgstr "Настроено. Используется App ID."
+msgid "Configured."
+msgstr "Настроено."
 
 msgid "Error. Invalid App ID."
 msgstr "Ошибка. Неверный формат App ID."
-
-msgid "Custom Installation Code"
-msgstr "Пользовательский код установки"
 
 msgid "Save Changes"
 msgstr "Сохранить изменения"

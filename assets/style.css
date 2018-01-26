@@ -23,26 +23,3 @@
 .chaport-status-warning {
     border-left-color: #f1da08;
 }
-
-.chaport-note {
-    max-width: 770px;
-}
-
-.chaport-note::after {
-    clear: both;
-}
-
-.chaport-note .label {
-    font-weight: bold;
-    float: left;
-    margin-right: 10px;
-}
-
-.chaport-note .text {
-    float: left;
-    margin-bottom: 20px;
-}
-
-.chaport-note .text p {
-    margin: 0;
-}
