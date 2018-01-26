@@ -87,20 +87,11 @@ final class ChaportPlugin {
             'chaport', // $page
             'chaport_general_settings' //$section
         );
-
-        add_settings_field(
-            'chaport_code_field', // $id
-            __('Custom Installation Code', 'chaport'), // $title
-            array($this, 'render_installation_code_field'), // $callback
-            'chaport', // $page
-            'chaport_general_settings' //$section
-        );
         
     }
 
     public function sanitize_options($options) {
         $sanitized['app_id'] = trim($options['app_id']);
-        $sanitized['code'] = trim($options['code']);
         return $sanitized;
     }
 
@@ -111,14 +102,10 @@ final class ChaportPlugin {
 
         $options = get_option('chaport_options');
         $appId = $options['app_id'];
-        $code = $options['code'];
 
-        if (!empty($code)) {
-            $statusMessage = __('Configured. Using custom installation code.', 'chaport');
-            $statusClass = 'chaport-status-ok';
-        } else if(!empty($appId)) {
+        if(!empty($appId)) {
             if (ChaportAppId::isValid($appId)) {
-                $statusMessage = __('Configured. Using Chaport App ID.', 'chaport');
+                $statusMessage = __('Configured.', 'chaport');
                 $statusClass = 'chaport-status-ok';
             } else {
                 $statusMessage = __('Error. Invalid App ID.', 'chaport');
@@ -131,13 +118,11 @@ final class ChaportPlugin {
     }
 
     public function render_app_id_field() {
-        $options = get_option('chaport_options');
-        echo "<input id='chaport_app_id_field' name='chaport_options[app_id]' size='40' type='text' value='" . esc_attr($options['app_id']) . "' />";
-    }
 
-    public function render_installation_code_field() {
         $options = get_option('chaport_options');
-        echo "<textarea id='chaport_code_field' name='chaport_options[code]' cols='80' rows='14'>" . esc_html($options['code']) . "</textarea>";
+
+        echo "<input id='chaport_app_id_field' name='chaport_options[app_id]' size='40' type='text' value='" . esc_attr($options['app_id']) . "' />";
+
     }
 
     public function render_settings_page() {
@@ -158,16 +143,10 @@ final class ChaportPlugin {
 
         $options = get_option('chaport_options');
         $appId = $options['app_id'];
-        $code = $options['code'];
 
-        if ($code) {
-
-            // User provided custom installation code. Render it as is.
-            echo $code;
-
-        } else if (!empty($appId) && ChaportAppId::isValid($appId)) {
+        if (!empty($appId) && ChaportAppId::isValid($appId)) {
             
-            // Render standart installation code
+            // Construct installation code renderer
             $renderer = new ChaportInstallationCodeRenderer(ChaportAppId::fromString($appId));
 
             // Try to get user email & name
@@ -179,6 +158,7 @@ final class ChaportPlugin {
                 $renderer->setUserName($user->display_name);
             }
     
+            // Render installation code
             $renderer->render();
 
         }
