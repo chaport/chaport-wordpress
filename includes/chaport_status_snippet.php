@@ -11,3 +11,13 @@
 <p>
     <?php echo __('Alternatively you can provide a custom Chaport installation code.', 'chaport') ?>
 </p>
+<div class='chaport-note'>
+    <div class='label'><?php echo __('Note:', 'chaport') ?></div>
+    <div class='text'>
+        <p><?php echo __('Custom installation code should set <i>"chaport.visitor"</i> if you want to pass user email & name to Chaport.', 'chaport') ?></p>
+        <p><?php printf(
+            __('See <i>"Javascript API"</i> on our <a target="_blank" href="%s">Documentation page</a>.', 'chaport'),
+            'https://docs.chaport.com/api/v1'
+        ) ?></p>
+    </div>
+</div>
