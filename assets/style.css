@@ -1,5 +1,5 @@
 
-div.chaport-status-box {
+.chaport-status-box {
     background: #ffffff;
     border-left: 4px solid #ffffff;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
@@ -8,18 +8,41 @@ div.chaport-status-box {
     max-width: 770px;
 }
 
-div.chaport-status-box span {
+.chaport-status-box span {
     margin-left: 5px;
 }
 
-div.chaport-status-ok {
+.chaport-status-ok {
     border-left-color: #46b450;
 }
 
-div.chaport-status-error {
+.chaport-status-error {
     border-left-color: #dc3232;
 }
 
-div.chaport-status-warning {
+.chaport-status-warning {
     border-left-color: #f1da08;
+}
+
+.chaport-note {
+    max-width: 770px;
+}
+
+.chaport-note::after {
+    clear: both;
+}
+
+.chaport-note .label {
+    font-weight: bold;
+    float: left;
+    margin-right: 10px;
+}
+
+.chaport-note .text {
+    float: left;
+    margin-bottom: 20px;
+}
+
+.chaport-note .text p {
+    margin: 0;
 }

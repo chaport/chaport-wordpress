@@ -1,4 +1,5 @@
 === Chaport Live Chat ===
+
 Contributors: vorteq
 Tags: chat, live chat, online chat, chat for website, support, helpdesk, free, chaport
 Requires at least: 2.8
@@ -10,27 +11,33 @@ License URI: https://opensource.org/licenses/MIT
 Modern Live Chat plugin for your WordPress site. Powerful features: group chats, file sending, etc. Free for 5 agents. Unlimited chats & history.
 
 == Description ==
-Chaport is designed as a modern messenger to make your communication with customers as easy and enjoyable as chatting with friends. Install Chaport Live Chat on your WordPress site, answer customer questions and increase sales! Free for 5 operators with unlimited chats and history.
 
-Here are some of Chaport\'s key features:
+Chaport is a free and easy-to-use live chat for your WordPress website. Start talking to customers in real-time and increase your sales!
 
-💎 Premium looking chat widget that works great on mobile
-🖥 Beautiful desktop apps for Mac & Windows
-📱 Full-featured mobile apps for iOS & Android
-👥 Group chats
-💬 Auto-invitations
-📧 Offline messages
-🌐 Multilingual chat widget
-✨ Saved replies
-📄 File sending
-😀 Emoji
-🔎 Typing insights
-🚫 Visitor ban
-📈 Reports
-🔗 API and Zapier integration
-💯 and much more...
+[youtube https://www.youtube.com/watch?v=v2uDN4X_kDs]
+
+Chaport is designed as a modern messenger to make your communication with customers as easy and enjoyable as chatting with friends. Free for 5 operators with unlimited chats and history.
+
+## Key features:
+
+- 💎 Premium looking chat widget that works great on mobile
+- 🖥 Beautiful desktop apps for Mac & Windows
+- 📱 Full-featured mobile apps for iOS & Android
+- 👥 Group chats
+- 💬 Auto-invitations
+- 📧 Offline messages
+- 🌐 Multilingual chat widget
+- ✨ Saved replies
+- 📄 File sending
+- 😀 Emoji
+- 🔎 Typing insights
+- 🚫 Visitor ban
+- 📈 Reports
+- 🔗 API and Zapier integration
+- 💯 and much more...
 
 == Installation ==
+
 There are 2 ways to install Chaport Live Chat plugin:
 
 ## Wordpress.org plugins directory.
@@ -54,3 +61,11 @@ All set! You\'re ready to chat with your customers either via [Chaport Web](http
 - [Android](https://play.google.com/store/apps/details?id=com.chaport.chaportmobile)
 - [Mac](https://www.chaport.ru/downloads/1.2.5/Chaport.dmg)
 - [Windows](https://www.chaport.ru/downloads/1.2.5/ChaportSetup.exe)
+
+== Screenshots ==
+
+1. Chaport app for operators and administrators
+2. Chat widget
+3. Some features
+4. Widget appearance customization
+5. Creating a new auto-invitation (an automatic message)

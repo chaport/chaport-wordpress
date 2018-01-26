@@ -26,11 +26,20 @@ msgstr "Настройки Chaport"
 msgid "Status:"
 msgstr "Состояние:"
 
+msgid "Note:"
+msgstr "Примечание:"
+
 msgid "Please paste a Chaport App ID which you can get under \"Chaport Settings\" -> <a target=\"_blank\" href=\"%s\">\"Installation code\"</a>"
 msgstr "Пожалуйста, вставьте ваш App ID, который Вы можете найти на странице \"Настройки\" -> <a target=\"_blank\" href=\"%s\">\"Код установки\"</a>"
 
 msgid "Alternatively you can provide a custom Chaport installation code."
 msgstr "Либо Вы можете предоставить свой (пользовательский) код установки."
+
+msgid "Custom installation code should set <i>\"chaport.visitor\"</i> if you want to pass user email & name to Chaport."
+msgstr "Пользовательский код установки должен установить <i>\"chaport.visitor\"</i> (если необходима передача имени и email пользователя в Chaport)."
+
+msgid "See <i>\"Javascript API\"</i> on our <a target=\"_blank\" href=\"%s\">Documentation page</a>."
+msgstr "См. раздел <i>\"Javascript API\"</i> на нашей <a target=\"_blank\" href=\"%s\">Странице документации</a>."
 
 msgid "Not configured."
 msgstr "Не настроено."

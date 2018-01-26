@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 require_once(dirname(__FILE__) . '/chaport_app_id.php');
 
 /** Chaport installation code renderer */

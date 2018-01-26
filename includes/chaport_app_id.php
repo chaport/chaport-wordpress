@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /** Contains Chaport App ID validated value */
 final class ChaportAppId {
 

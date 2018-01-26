@@ -10,7 +10,7 @@
     <p>
         <?php printf(
             __('Chaport Live Chat Plugin supports Wordpress starting from version %s. Please upgrade.', 'chaport'),
-            WP_MAJOR . '.' . WP_MINOR
+            self::WP_MAJOR . '.' . self::WP_MINOR
         ) ?>
     </p>
 <?php endif; ?>
