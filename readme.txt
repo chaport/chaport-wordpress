@@ -36,6 +36,8 @@ Chaport is designed as a modern messenger to make your communication with custom
 - 🔗 API and Zapier integration
 - 💯 and much more...
 
+For more information visit [https://www.chaport.com](https://www.chaport.com).
+
 == Installation ==
 
 There are 2 ways to install Chaport Live Chat plugin:
