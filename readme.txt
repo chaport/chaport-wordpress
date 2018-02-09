@@ -3,7 +3,7 @@
 Contributors: vorteq
 Tags: chat, live chat, online chat, chat for website, support, helpdesk, free, chaport
 Requires at least: 2.8
-Tested up to: 4.9.2
+Tested up to: 4.9.4
 Requires PHP: 5.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
