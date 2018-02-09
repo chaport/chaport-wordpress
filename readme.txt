@@ -71,3 +71,12 @@ All set! You're ready to chat with your customers either via [Chaport Web](https
 3. Some features
 4. Widget appearance customization
 5. Creating a new auto-invitation (an automatic message)
+
+== Changelog ==
+
+= 1.0.0 =
+* Improved page load time
+* Plugin tested with Wordpress 4.9.4
+
+= 1.0.0 =
+* Initial release
