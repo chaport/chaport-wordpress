@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Chaport Live Chat
  * Description: Modern Live Chat plugin for your WordPress site. Powerful features: group chats, file sending, etc. Free for 5 agents. Unlimited chats & history.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Chaport
  * Author URI: https://www.chaport.com/
  * Text Domain: chaport
