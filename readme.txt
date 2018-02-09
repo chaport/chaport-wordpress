@@ -74,7 +74,7 @@ All set! You're ready to chat with your customers either via [Chaport Web](https
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Improved page load time
 * Plugin tested with Wordpress 4.9.4
 
