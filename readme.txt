@@ -3,7 +3,7 @@
 Contributors: vorteq
 Tags: chat, live chat, online chat, chat for website, support, helpdesk, free, chaport
 Requires at least: 2.8
-Tested up to: 4.9.2
+Tested up to: 4.9.4
 Requires PHP: 5.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
@@ -71,3 +71,12 @@ All set! You're ready to chat with your customers either via [Chaport Web](https
 3. Some features
 4. Widget appearance customization
 5. Creating a new auto-invitation (an automatic message)
+
+== Changelog ==
+
+= 1.0.0 =
+* Improved page load time
+* Plugin tested with Wordpress 4.9.4
+
+= 1.0.0 =
+* Initial release
