@@ -37,7 +37,7 @@ final class ChaportPlugin {
         add_action('admin_enqueue_scripts', array($this, 'handle_admin_enqueue_scripts') );
         add_action('admin_menu', array($this, 'handle_admin_menu'));
         add_action('admin_init', array($this, 'handle_admin_init'));
-        add_action('wp_head', array($this, 'render_chaport_code'));
+        add_action('wp_footer', array($this, 'render_chaport_code'));
     }
 
     public function wp_version_is_compatible() {
